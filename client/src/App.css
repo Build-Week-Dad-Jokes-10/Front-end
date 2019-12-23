@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.punchline-btn {
+  text-decoration: none;
+  border: none;
+  display: flex;
+  justify-content: flex-end;
+  background: none;
+  outline: none;
+  color: #ebc700;
+}
+
+.punchline-btn:focus {
+  outline: 0;
+}
+
+.home-page-nav {
+  padding: 0 5%;
+  font-size: 20px;
+}
+
+.home-page-nav-link {
+  color: black;
+  font-weight: bold;
+}
