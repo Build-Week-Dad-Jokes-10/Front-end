@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/AxiosWithAuth';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 
 const Login = (props) => {
     const [cred, setCred] = useState({username: '', password: ''});
