@@ -7,7 +7,11 @@ export default function JokeCardList() {
   return (
     <div>
       {joke.map(j => (
-        <JokeCard setup={j.setup} punchline={j.punchline} />
+        <JokeCard
+          setup={j.setup}
+          punchline={j.punchline}
+          username={j.username}
+        />
       ))}
     </div>
   );
