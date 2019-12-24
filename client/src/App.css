@@ -27,7 +27,54 @@
 .App-link {
   color: #61dafb;
 }
-
+.login-header {
+  font-weight: 800;
+  margin-top: 2%;
+}
+.login-form {
+  width: 40%;
+  margin: 1% auto;
+  background: #2670C5;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.login-label {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 5%;
+}
+.login-cred {
+  width: 80%;
+  margin: 5% auto;
+}
+.submit-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end
+}
+.signup-prompt-con {
+  font-size: 1rem;
+  align-self: center;
+  color: black;
+  margin-bottom: 1%;
+}
+.signup-prompt {
+  cursor: pointer;
+  font-size: 1rem;
+  
+}
+.signup-prompt:hover {
+  color: #E31D4C
+}
+.error-message {
+  color: #E31D4C;
+  font-size: 1.25rem;
+  font-weight: 400
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
