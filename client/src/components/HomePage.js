@@ -47,7 +47,7 @@ export default function HomePage() {
             </NavItem>
           </Nav>
         </Card>
-        <h1>Top Dad Jokes </h1>
+        <h1 style={{ color: "#380a15" }}>Top Dad Jokes </h1>
         <JokeCardList />
       </Container>
       <Footer />
