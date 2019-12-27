@@ -13,7 +13,7 @@ const Login = props => {
     e.preventDefault();
     console.log(user);
     if(cred.username === user[0].username && cred.password === user[0].password) {
-      localStorage.setItem('token', cred)
+      localStorage.setItem('token', 'true')
       props.history.push('/homepage');
     }
     else(

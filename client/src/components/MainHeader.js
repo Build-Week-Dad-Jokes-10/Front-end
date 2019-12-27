@@ -29,6 +29,11 @@ export default function MainHeader() {
               </NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href="/profile" className="acc-page-nav-link">
+                Profile
+              </NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink href="/settings" className="acc-page-nav-link">
                 Settings
               </NavLink>
