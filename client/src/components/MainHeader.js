@@ -2,6 +2,10 @@ import React from "react";
 import { CardHeader, Col, Nav, NavItem, NavLink } from "reactstrap";
 
 export default function MainHeader() {
+  const logout = () => {
+    localStorage.clear()
+    alert('Thank you! Please come back soon!')
+  }
   return (
     <div>
       <Col md={{ offset: 2 }}>
@@ -25,12 +29,12 @@ export default function MainHeader() {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#" className="acc-page-nav-link">
+              <NavLink href="/settings" className="acc-page-nav-link">
                 Settings
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#" className="acc-page-nav-link">
+              <NavLink href="/homePage" onClick={logout} className="acc-page-nav-link">
                 Log Out
               </NavLink>
             </NavItem>

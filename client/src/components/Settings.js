@@ -8,7 +8,9 @@ const Settings = props => {
     const { user, setUser } = useContext(UserContext);
     const buttonStyle = {
         marginTop: '3%',
-
+        backgroundColor: "#EBC700",
+        color: "#380a15",
+        fontWeight: "bold"
     }
     return (
         <>
