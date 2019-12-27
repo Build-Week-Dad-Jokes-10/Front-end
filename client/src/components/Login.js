@@ -1,24 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { axiosWithAuth } from "../utils/AxiosWithAuth";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import Footer from "./Footer";
+import { UserContext } from '../contexts/UserContext'
 
 const Login = props => {
   const [cred, setCred] = useState({ username: "", password: "" });
   const [err, setErr] = useState("");
+  const { user } = useContext(UserContext)
 
   const handleSubmit = e => {
     e.preventDefault();
-    axiosWithAuth()
-      .post("", cred)
-      .then(res => {
-        localStorage.setItem("token", res.data.token);
-        props.history.push("/");
-      })
-      .catch(err => {
-        console.log(err.message);
-        setErr("Invalid Username/Password");
-      });
+    console.log(user);
+    if(cred.username === user[0].username && cred.password === user[0].password) {
+      localStorage.setItem('token', cred)
+      props.history.push('/homepage');
+    }
+    else(
+      setErr('Incorrect Username/Password')
+    )
+    // axiosWithAuth()
+    //   .post("", cred)
+    //   .then(res => {
+    //     localStorage.setItem("token", res.data.token);
+    //     props.history.push("/");
+    //   })
+    //   .catch(err => {
+    //     console.log(err.message);
+    //     setErr("Invalid Username/Password");
+    //   });
+
   };
   const handleChange = e => {
     e.preventDefault();
