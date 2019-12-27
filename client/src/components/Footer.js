@@ -7,7 +7,7 @@ export default function Footer() {
       //TODO add footer text
       style={{
         marginTop: "30%",
-        backgroundColor: "black",
+        backgroundColor: "#380a15",
 
         width: "100%",
         height: "2.5rem",

@@ -113,3 +113,8 @@
   display: flex;
   padding-left: 5%;
 }
+
+.acc-page-nav-link {
+  color: #380a15;
+  font-weight: bold;
+}

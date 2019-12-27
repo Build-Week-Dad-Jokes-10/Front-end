@@ -38,13 +38,15 @@ export default function JokeCard(props) {
             {props.punchline}
           </CardText>
         ) : null}
-        <CardText style={{ bottom: "5", position: "absolute" }}>
+        <CardText
+          style={{ bottom: "5", position: "absolute", color: "#380a15" }}
+        >
           Posted by {props.username}
         </CardText>
         <div className="vote-buttons">
           {isUpLiked ? (
             <TiArrowUpThick
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", color: "#380a15" }}
               size={30}
               onClick={() => {
                 setIsUpLiked(false);
@@ -54,7 +56,7 @@ export default function JokeCard(props) {
             />
           ) : (
             <TiArrowUpOutline
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", color: "#380a15" }}
               size={30}
               onClick={() => {
                 if (isDownLiked) {
@@ -67,7 +69,7 @@ export default function JokeCard(props) {
 
           {isDownLiked ? (
             <TiArrowDownThick
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", color: "#380a15" }}
               size={30}
               onClick={() => {
                 setIsDownLiked(false);
@@ -77,7 +79,7 @@ export default function JokeCard(props) {
             />
           ) : (
             <TiArrowDownOutline
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", color: "#380a15" }}
               size={30}
               onClick={() => {
                 if (isUpLiked) {
