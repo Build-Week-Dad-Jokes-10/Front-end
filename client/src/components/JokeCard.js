@@ -16,6 +16,8 @@ export default function JokeCard(props) {
   let cardItemText = useRef(null);
   const likeButton = useRef(null);
   const unlikeButton = useRef(null);
+  const dislikeButton = useRef(null);
+  const undoDislikeButton = useRef(null);
 
   const toggle = () => {
     TweenMax.set(cardItemText.current, { autoAlpha: 0 });
@@ -46,8 +48,12 @@ export default function JokeCard(props) {
       setIsDownLiked(false);
     }
     setIsUpLiked(true);
-    TweenLite.to(likeButton.current, 0.5, {
-      rotation: 360
+    TweenLite.to(likeButton.current, {
+      keyframes: [
+        { scale: 1.5, duration: 0.5 },
+        { scale: 1, duration: 0.5 }
+      ],
+      ease: "elastic"
     });
   };
   return (
@@ -101,8 +107,14 @@ export default function JokeCard(props) {
                 onClick={() => {
                   console.log("unlikebutton", unlikeButton);
                   setIsUpLiked(false);
+                  TweenLite.to(unlikeButton.current, {
+                    keyframes: [
+                      { scale: 1.5, duration: 0.3 },
+                      { scale: 1, duration: 0.3 }
+                    ],
+                    ease: "elastic"
+                  });
                   //TODO add isliked functionality to API
-                  //TODO add GSAP
                 }}
               />
             </button>
@@ -120,26 +132,49 @@ export default function JokeCard(props) {
           )}
 
           {isDownLiked ? (
-            <TiArrowDownThick
-              style={{ cursor: "pointer", color: "#380a15" }}
-              size={30}
-              onClick={() => {
-                setIsDownLiked(false);
-                //TODO add functionality to API
-                //TODO add GSAP
-              }}
-            />
+            <button
+              ref={dislikeButton}
+              style={{ border: "none", background: "none", outline: "none" }}
+            >
+              <TiArrowDownThick
+                style={{ cursor: "pointer", color: "#380a15" }}
+                size={30}
+                onClick={() => {
+                  setIsDownLiked(false);
+                  //TODO add functionality to API
+                  TweenLite.to(dislikeButton.current, {
+                    keyframes: [
+                      { scale: 1.5, duration: 0.3 },
+                      { scale: 1, duration: 0.3 }
+                    ],
+                    ease: "elastic"
+                  });
+                }}
+              />
+            </button>
           ) : (
-            <TiArrowDownOutline
-              style={{ cursor: "pointer", color: "#380a15" }}
-              size={30}
-              onClick={() => {
-                if (isUpLiked) {
-                  setIsUpLiked(false);
-                }
-                setIsDownLiked(true);
-              }}
-            />
+            <button
+              ref={undoDislikeButton}
+              style={{ border: "none", background: "none", outline: "none" }}
+            >
+              <TiArrowDownOutline
+                style={{ cursor: "pointer", color: "#380a15" }}
+                size={30}
+                onClick={() => {
+                  if (isUpLiked) {
+                    setIsUpLiked(false);
+                  }
+                  setIsDownLiked(true);
+                  TweenLite.to(undoDislikeButton.current, {
+                    keyframes: [
+                      { scale: 1.5, duration: 0.5 },
+                      { scale: 1, duration: 0.5 }
+                    ],
+                    ease: "elastic"
+                  });
+                }}
+              />
+            </button>
           )}
         </div>
 
