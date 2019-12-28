@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { UserContext } from "../contexts/UserContext";
 import { JokeContext } from "../contexts/JokeContext";
 import JokeCardList from "./JokeCardList";
 import { Container, Card, Nav, NavItem, NavLink } from "reactstrap";
@@ -8,18 +9,22 @@ import Footer from "./Footer";
 
 export default function HomePage() {
   const { joke } = useContext(JokeContext);
+  const { user, setUser } = useContext(UserContext);
+  //TODO setloading when backend
   const [logged, setLogged] = useState(false);
   console.log(joke);
   useEffect(() => {
-    console.log(localStorage.getItem('token'))
-    if (localStorage.getItem('token') === 'true') {
-      setLogged(true)
+    console.log(localStorage.getItem("token"));
+    if (localStorage.getItem("token") === "true") {
+      setLogged(true);
     }
-  }, [logged])
+  }, [logged]);
   const logout = () => {
-    localStorage.clear()
-    alert('Thank you! Please come back soon!')
-  }
+    localStorage.clear();
+    alert("Thank you! Please come back soon!");
+  };
+
+  console.log(user);
   return (
     <>
       <Container>
@@ -40,44 +45,48 @@ export default function HomePage() {
           >
             Dad Jokes
           </h1>
-          {logged &&
+          {logged && (
             <Nav className="d-flex justify-content-center">
-            <NavItem className="home-page-nav">
-              <NavLink href="/homepage" className="home-page-nav-link">
-                Home
-              </NavLink>
-            </NavItem>
-            <NavItem className="home-page-nav">
-              <NavLink href="/profile" className="home-page-nav-link">
-                My Profile
-              </NavLink>
-            </NavItem>
-            <NavItem className="home-page-nav">
-              <NavLink href="/settings" className="home-page-nav-link">
-                Settings
-              </NavLink>
-            </NavItem>
-            <NavItem className="home-page-nav">
-              <NavLink href="/homepage" onClick={logout} className="home-page-nav-link">
-                Log Out
-              </NavLink>
-            </NavItem>
-          </Nav>
-          }
-          {!logged && 
+              {/* <NavItem className="home-page-nav">
+                <NavLink href="/" className="home-page-nav-link">
+                  Home
+                </NavLink>
+              </NavItem> */}
+              <NavItem className="home-page-nav">
+                <NavLink href="/profile" className="home-page-nav-link">
+                  My Profile
+                </NavLink>
+              </NavItem>
+              <NavItem className="home-page-nav">
+                <NavLink href="/settings" className="home-page-nav-link">
+                  Settings
+                </NavLink>
+              </NavItem>
+              <NavItem className="home-page-nav">
+                <NavLink
+                  href="/"
+                  onClick={logout}
+                  className="home-page-nav-link"
+                >
+                  Log Out
+                </NavLink>
+              </NavItem>
+            </Nav>
+          )}
+          {!logged && (
             <Nav className="d-flex justify-content-center">
-            <NavItem className="home-page-nav">
-              <NavLink href="/" className="home-page-nav-link">
-                Log In
-              </NavLink>
-            </NavItem>
-            <NavItem className="home-page-nav">
-              <NavLink href="#" className="home-page-nav-link">
-                Sign Up
-              </NavLink>
-            </NavItem>
-          </Nav>
-          }
+              <NavItem className="home-page-nav">
+                <NavLink href="/login" className="home-page-nav-link">
+                  Log In
+                </NavLink>
+              </NavItem>
+              <NavItem className="home-page-nav">
+                <NavLink href="/signup" className="home-page-nav-link">
+                  Sign Up
+                </NavLink>
+              </NavItem>
+            </Nav>
+          )}
         </Card>
         <h1 style={{ color: "#380a15" }}>Top Dad Jokes </h1>
         <JokeCardList />

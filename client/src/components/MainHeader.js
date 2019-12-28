@@ -3,9 +3,9 @@ import { CardHeader, Col, Nav, NavItem, NavLink } from "reactstrap";
 
 export default function MainHeader() {
   const logout = () => {
-    localStorage.clear()
-    alert('Thank you! Please come back soon!')
-  }
+    localStorage.clear();
+    alert("Thank you! Please come back soon!");
+  };
   return (
     <div>
       <Col md={{ offset: 2 }}>
@@ -24,7 +24,7 @@ export default function MainHeader() {
           </h1>
           <Nav style={{ float: "right" }}>
             <NavItem>
-              <NavLink href="/homePage" className="acc-page-nav-link">
+              <NavLink href="/" className="acc-page-nav-link">
                 Home
               </NavLink>
             </NavItem>
@@ -39,7 +39,7 @@ export default function MainHeader() {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/homePage" onClick={logout} className="acc-page-nav-link">
+              <NavLink href="/" onClick={logout} className="acc-page-nav-link">
                 Log Out
               </NavLink>
             </NavItem>

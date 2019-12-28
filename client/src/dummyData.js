@@ -5,7 +5,9 @@ export default [
     punchline: "you could say I have 2020 vision",
     username: "littleTimmy06",
     userid: 200,
-    dateCreated: "07272019"
+    dateCreated: "07272019",
+    likes: 0,
+    dislikes: 0
   },
   {
     id: 2,
@@ -13,7 +15,9 @@ export default [
     punchline: "or you might get repossessed",
     username: "BestDad77",
     userid: 300,
-    dateCreated: "10272019"
+    dateCreated: "10272019",
+    likes: 0,
+    dislikes: 0
   },
   {
     id: 3,
@@ -21,6 +25,8 @@ export default [
     punchline: "swept the nation",
     username: "PsychicPebbles",
     userid: 400,
-    dateCreated: "08112019"
+    dateCreated: "08112019",
+    likes: 0,
+    dislikes: 0
   }
 ];

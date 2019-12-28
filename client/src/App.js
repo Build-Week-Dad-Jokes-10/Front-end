@@ -4,12 +4,13 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import ProfilePage from "./components/ProfilePage";
 import Login from "./components/Login";
-import Settings from './components/Settings';
+import Settings from "./components/Settings";
 import "./App.css";
 import { UserContext } from "./contexts/UserContext";
 import { JokeContext } from "./contexts/JokeContext";
 import dummyData from "./dummyData";
-import dummyUserData from './dummyUserData';
+import dummyUserData from "./dummyUserData";
+import SignUp from "./components/SignUp";
 
 function App() {
   const [joke, setJoke] = useState(dummyData);
@@ -22,10 +23,11 @@ function App() {
           {/* <PrivateRoute exact path='/' component={HomePage} /> */}
           <UserContext.Provider value={{ user, setUser }}>
             <JokeContext.Provider value={{ joke, setJoke }}>
-              <Route exact path="/" component={Login} />
-              <Route exact path="/homePage" component={HomePage} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/" component={HomePage} />
               <Route exact path="/profile" component={ProfilePage} />
               <Route exact path="/settings" component={Settings} />
+              <Route exact path="/signup" component={SignUp} />
               {/* <Route component=   {Login} /> */}
             </JokeContext.Provider>
           </UserContext.Provider>
