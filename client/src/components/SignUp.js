@@ -1,35 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { axiosWithAuth } from "../utils/AxiosWithAuth";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import Footer from "./Footer";
 import { UserContext } from "../contexts/UserContext";
 
-const Login = props => {
-  const [cred, setCred] = useState({ username: "", password: "" });
+export default function SignUp(props) {
+  const [cred, setCred] = useState({
+    username: "",
+    password: "",
+    confirmPassword: ""
+  });
   const [err, setErr] = useState("");
-  const { user } = useContext(UserContext);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(user);
-    if (
-      cred.username === user[0].username &&
-      cred.password === user[0].password
-    ) {
-      localStorage.setItem("token", "true");
-      props.history.push("/");
-    } else setErr("Incorrect Username/Password");
-    // axiosWithAuth()
-    //   .post("", cred)
-    //   .then(res => {
-    //     localStorage.setItem("token", res.data.token);
-    //     props.history.push("/");
-    //   })
-    //   .catch(err => {
-    //     console.log(err.message);
-    //     setErr("Invalid Username/Password");
-    //   });
-  };
+  const { user, setUser } = useContext(UserContext);
 
   const handleChange = e => {
     e.preventDefault();
@@ -38,11 +20,26 @@ const Login = props => {
       [e.target.name]: e.target.value
     });
   };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (cred.confirmPassword === cred.password) {
+      localStorage.setItem("token", "true");
+      //   let newUser = user.slice();
+      //   user.push({ ...cred, id: Date.now() });
+      //   localStorage.setItem(user, "true");
+      //   console.log("the new user", newUser);
+      props.history.push("/");
+    } else {
+      setErr("Password does not match confirmation, please try again");
+    }
+  };
+
   return (
     <>
       <h1 className="login-header">Dad Jokes</h1>
       <Form onSubmit={handleSubmit} className="login-form">
-        <label className="login-label">Log In</label>
+        <label className="login-label">Sign Up</label>
 
         <div>
           <FormGroup className="login-cred">
@@ -64,27 +61,34 @@ const Login = props => {
               onChange={handleChange}
             />
           </FormGroup>
+          <FormGroup className="login-cred">
+            <Input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={cred.confirmPassword}
+              onChange={handleChange}
+            />
+          </FormGroup>
         </div>
 
         <FormGroup className="submit-container">
           <p className="signup-prompt-con">
-            Don't have an account?{" "}
+            Already have an account?{" "}
             <span
               className="signup-prompt"
               onClick={() => {
-                props.history.push("/signup");
+                props.history.push("/login");
               }}
             >
-              Sign Up
+              Log In
             </span>
           </p>
-          <Button>Log In</Button>
+          <Button>Sign Up</Button>
         </FormGroup>
         {err && <div className="error-message">{err}</div>}
       </Form>
       <Footer />
     </>
   );
-};
-
-export default Login;
+}
