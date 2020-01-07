@@ -3,7 +3,7 @@ import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
 import { JokeContext } from "../contexts/JokeContext";
 import JokeCardList from "./JokeCardList";
-import { Container, Card, Nav, NavItem, NavLink } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Container, Card, Nav, NavItem, NavLink } from "reactstrap";
 import daddy from "../../src/daddy.jpg";
 import Footer from "./Footer";
 
@@ -12,6 +12,11 @@ export default function HomePage() {
   const { user, setUser } = useContext(UserContext);
   //TODO setloading when backend
   const [logged, setLogged] = useState(false);
+
+  const [modal, setModal] = useState(false);
+  const [newJoke, setNewJoke] = useState({setup: '', punchline: ''})
+  const toggle = () => setModal(!modal);
+
   console.log(joke);
   useEffect(() => {
     console.log(localStorage.getItem("token"));
@@ -45,6 +50,8 @@ export default function HomePage() {
           >
             Dad Jokes
           </h1>
+          
+          
           {logged && (
             <Nav className="d-flex justify-content-center">
               {/* <NavItem className="home-page-nav">
@@ -89,6 +96,30 @@ export default function HomePage() {
           )}
         </Card>
         <h1 style={{ color: "#380a15" }}>Top Dad Jokes </h1>
+        <Button onClick={toggle}>Add Joke</Button>
+        <Modal isOpen={modal} toggle={toggle} className="add-joke">
+            <ModalHeader toggle={toggle}>Create Joke</ModalHeader>
+            <Form onSubmit={'handleSubmit'}>
+              <FormGroup>
+                  <Input
+                    type='text'
+                    name="setup"
+                    placeholder="Enter a setup"
+                    value={newJoke.setup}
+                  />
+                </FormGroup>
+
+                <FormGroup>
+                  <Input
+                    type='text'
+                    name="punchline"
+                    placeholder="Enter a punchline"
+                    value={newJoke.punchline}
+                  />
+                </FormGroup>
+                <Button>Submit</Button>
+            </Form>
+          </Modal>
         <JokeCardList />
       </Container>
       <Footer />
