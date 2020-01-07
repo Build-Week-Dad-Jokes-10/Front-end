@@ -118,3 +118,27 @@
   color: #380a15;
   font-weight: bold;
 }
+
+.add-joke-header {
+  width: 100%;
+  margin: 10% 0 0 60%;
+}
+
+.add-form {
+  padding: 0 10% 30% 10%;
+}
+
+.add-joke-input {
+  padding: 3% 0%;
+}
+
+.add-joke-btn {
+  display: flex;
+  margin-left: 80%;
+}
+
+.showModalBtn {
+  margin-left: 58%;
+  margin-top: 5%;
+  background-color: #2670c5;
+}

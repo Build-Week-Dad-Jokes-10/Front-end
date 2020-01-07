@@ -3,7 +3,21 @@ import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
 import { JokeContext } from "../contexts/JokeContext";
 import JokeCardList from "./JokeCardList";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Container, Card, Nav, NavItem, NavLink } from "reactstrap";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Form,
+  FormGroup,
+  Input,
+  Container,
+  Card,
+  Nav,
+  NavItem,
+  NavLink
+} from "reactstrap";
 import daddy from "../../src/daddy.jpg";
 import Footer from "./Footer";
 
@@ -14,7 +28,7 @@ export default function HomePage() {
   const [logged, setLogged] = useState(false);
 
   const [modal, setModal] = useState(false);
-  const [newJoke, setNewJoke] = useState({setup: '', punchline: ''})
+  const [newJoke, setNewJoke] = useState({ setup: "", punchline: "" });
   const toggle = () => setModal(!modal);
 
   console.log(joke);
@@ -27,6 +41,13 @@ export default function HomePage() {
   const logout = () => {
     localStorage.clear();
     alert("Thank you! Please come back soon!");
+  };
+
+  const handleModalChange = e => {
+    setNewJoke({
+      ...newJoke,
+      [e.target.name]: e.target.value
+    });
   };
 
   console.log(user);
@@ -50,8 +71,7 @@ export default function HomePage() {
           >
             Dad Jokes
           </h1>
-          
-          
+
           {logged && (
             <Nav className="d-flex justify-content-center">
               {/* <NavItem className="home-page-nav">
@@ -96,30 +116,52 @@ export default function HomePage() {
           )}
         </Card>
         <h1 style={{ color: "#380a15" }}>Top Dad Jokes </h1>
-        <Button onClick={toggle}>Add Joke</Button>
-        <Modal isOpen={modal} toggle={toggle} className="add-joke">
-            <ModalHeader toggle={toggle}>Create Joke</ModalHeader>
-            <Form onSubmit={'handleSubmit'}>
-              <FormGroup>
-                  <Input
-                    type='text'
-                    name="setup"
-                    placeholder="Enter a setup"
-                    value={newJoke.setup}
-                  />
-                </FormGroup>
+        {logged && (
+          <Button
+            className="showModalBtn"
+            onClick={toggle}
+            style={{ backgroundColor: "#2670c5" }}
+          >
+            Add Joke
+          </Button>
+        )}
 
-                <FormGroup>
-                  <Input
-                    type='text'
-                    name="punchline"
-                    placeholder="Enter a punchline"
-                    value={newJoke.punchline}
-                  />
-                </FormGroup>
-                <Button>Submit</Button>
-            </Form>
-          </Modal>
+        <Modal
+          isOpen={modal}
+          toggle={toggle}
+          style={{ width: "800px", height: "200vh", marginTop: "17%" }}
+        >
+          <ModalHeader toggle={toggle} style={{ marginBottom: "20%" }}>
+            <h1 className="add-joke-header">Create Joke</h1>
+          </ModalHeader>
+          <Form onSubmit={"handleSubmit"} className="add-form">
+            <FormGroup className="add-joke-input">
+              <Input
+                type="text"
+                name="setup"
+                placeholder="Enter a setup"
+                value={newJoke.setup}
+                onChange={handleModalChange}
+              />
+            </FormGroup>
+
+            <FormGroup className="add-joke-input">
+              <Input
+                type="text"
+                name="punchline"
+                placeholder="Enter a punchline"
+                value={newJoke.punchline}
+                onChange={handleModalChange}
+              />
+            </FormGroup>
+            <Button
+              className="add-joke-btn"
+              style={{ backgroundColor: "#2670c5" }}
+            >
+              Submit
+            </Button>
+          </Form>
+        </Modal>
         <JokeCardList />
       </Container>
       <Footer />
