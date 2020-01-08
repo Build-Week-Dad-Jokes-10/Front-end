@@ -62,9 +62,10 @@ export default function JokeCard(props) {
         innerRef={cardItem}
         style={{
           width: "80%",
-          margin: "2% 0",
+          margin: "5% 0",
           backgroundColor: "#2670C5",
-          opacity: "0"
+          opacity: "0",
+          boxShadow: "20px 15px 30px black"
         }}
       >
         <CardText

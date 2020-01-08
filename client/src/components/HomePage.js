@@ -69,7 +69,6 @@ export default function HomePage() {
         >
           <h1
             style={{
-              paddingTop: "8%",
               fontSize: "50px",
               color: "white",
               textShadow: "1px 1px black"
