@@ -61,7 +61,10 @@ export default function HomePage() {
           style={{
             height: "30vh",
             marginBottom: "10%",
-            backgroundImage: `url(${daddy})`
+            backgroundImage: `url(${daddy})`,
+            boxShadow: "20px 15px 30px black",
+            borderRadius: "5%",
+            padding: "1%"
           }}
         >
           <h1

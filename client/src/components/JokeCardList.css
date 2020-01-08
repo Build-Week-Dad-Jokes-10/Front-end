@@ -1,0 +1,6 @@
+.JokeCardList-container {
+    border: 1px solid black;
+    box-shadow: 20px 15px 30px black;
+    border-radius: 2%;
+    padding: 1%;
+}

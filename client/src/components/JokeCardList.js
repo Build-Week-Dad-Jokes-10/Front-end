@@ -3,6 +3,8 @@ import { JokeContext } from "../contexts/JokeContext";
 import JokeCard from "./JokeCard";
 import Pagination from "./Pagination";
 
+import "./JokeCardList.css";
+
 export default function JokeCardList(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
@@ -19,7 +21,7 @@ export default function JokeCardList(props) {
   };
 
   return (
-    <div>
+    <div className='JokeCardList-container'>
       {currentPosts.map(j => (
         <JokeCard
           setup={j.setup}
