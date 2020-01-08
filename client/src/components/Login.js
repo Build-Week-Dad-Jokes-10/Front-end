@@ -7,7 +7,7 @@ import { UserContext } from "../contexts/UserContext";
 const Login = props => {
   const [cred, setCred] = useState({ username: "", password: "" });
   const [err, setErr] = useState("");
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -41,8 +41,8 @@ const Login = props => {
   return (
     <>
       <h1 className="login-header">Dad Jokes</h1>
-      <Form onSubmit={handleSubmit} className="login-form">
-        <label className="login-label">Log In</label>
+      <Form onSubmit={handleSubmit} className="login-form" data-testid="login-form">
+        <label className="login-label" >Log In</label>
 
         <div>
           <FormGroup className="login-cred">
