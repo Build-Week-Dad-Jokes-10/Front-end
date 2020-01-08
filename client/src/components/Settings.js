@@ -14,11 +14,25 @@ const Settings = props => {
         color: "#380a15",
         fontWeight: "bold"
     }
-
+    const modalStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        color: "#380a15",
+        padding: '2%'
+    }
+    const modalButton = {
+        backgroundColor: "#EBC700",
+        color: "#380a15",
+        fontWeight: "bold",
+        margin: '2%'
+    }
     const [userModal, setUserModal] = useState(false);
-    const userToggle = () => setUserModal(!userModal)
     const [passModal, setPassModal] = useState(false);
+
+    const userToggle = () => setUserModal(!userModal)
     const passToggle = () => setPassModal(!passModal)
+
     const handleChange = e => {
         e.preventDefault();
         setNewData({
@@ -58,7 +72,7 @@ const Settings = props => {
                         <Modal isOpen={userModal} toggle={userToggle} className="change-user">
                             <ModalHeader toggle={userToggle}>Change Username</ModalHeader>
                             <Form onSubmit={'handleSubmit'}>
-                            <FormGroup>
+                            <FormGroup style={modalStyle}>
                                 <Input
                                     type='text'
                                     name="username"
@@ -67,14 +81,14 @@ const Settings = props => {
                                     onChange={handleChange}
                                 />
                                 </FormGroup>
-                                <Button>Submit</Button>
+                                <Button style={modalButton}>Submit</Button>
                             </Form>
                         </Modal>
                         <Button style={buttonStyle} onClick={passToggle}>Change your Password</Button>
                         <Modal isOpen={passModal} toggle={passToggle} className="change-user">
                             <ModalHeader toggle={passToggle}>Change Password</ModalHeader>
                             <Form onSubmit={handleSubmit}>
-                            <FormGroup>
+                            <FormGroup style={modalStyle}>
                                 <Input
                                     type='password'
                                     name="password"
@@ -90,7 +104,7 @@ const Settings = props => {
                                     onChange={handleChange}
                                 />
                                 </FormGroup>
-                                <Button>Submit</Button>
+                                <Button style={modalButton}>Submit</Button>
                                 {err && <div className="error-message">{err}</div>}
                             </Form>
                         </Modal>

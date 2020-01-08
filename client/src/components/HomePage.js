@@ -15,6 +15,7 @@ export default function HomePage() {
 
   const [modal, setModal] = useState(false);
   const [newJoke, setNewJoke] = useState({setup: '', punchline: ''})
+  
   const toggle = () => setModal(!modal);
 
   console.log(joke);
