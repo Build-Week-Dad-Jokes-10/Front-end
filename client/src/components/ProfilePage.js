@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { JokeContext } from "../contexts/JokeContext";
+import { UserContext } from "../contexts/UserContext";
 import MainHeader from "./MainHeader";
 import Footer from "./Footer";
 import { Card, Col, Container, CardText, Button } from "reactstrap";
@@ -8,6 +9,8 @@ import { MdAccountCircle } from "react-icons/md";
 
 export default function ProfilePage() {
   const { joke } = useContext(JokeContext);
+  const { user } = useContext(UserContext);
+  console.log(user);
   return (
     <>
       <MainHeader />
@@ -32,21 +35,31 @@ export default function ProfilePage() {
                   fontWeight: "bold"
                 }}
               >
-                Edit Account
+                <a
+                  href="/settings"
+                  style={{ color: "black", textDecoration: "none" }}
+                >
+                  Edit Account
+                </a>
               </Button>
             </div>
           </div>
           {/* //TODO replace with account picture */}
-          <h1
-            style={{
-              paddingTop: "5%",
-              paddingLeft: "15%",
-              fontSize: "50px",
-              color: "#380a15"
-            }}
-          >
-            Account Placeholder
-          </h1>
+          <div style={{ width: "100%" }}>
+            <h1
+              style={{
+                paddingTop: "5%",
+                marginRight: "20%",
+                fontSize: "60px",
+                color: "#380a15"
+              }}
+            >
+              {user[0].username}
+            </h1>
+            <h2 style={{ display: "flex", fontSize: "20px" }}>
+              Member Since {user[0].dateCreated}
+            </h2>
+          </div>
         </Card>
         <h1
           style={{
@@ -62,9 +75,9 @@ export default function ProfilePage() {
         {/* TODO add joke card list when backend  */}
         {/* //TODO filter jokes to specific users account */}
 
-        {/* <Footer /> */}
         {/* //TODO add footer when done */}
       </Container>
+      <Footer />
     </>
   );
 }
