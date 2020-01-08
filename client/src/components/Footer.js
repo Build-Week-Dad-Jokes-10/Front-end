@@ -8,13 +8,13 @@ export default function Footer() {
       style={{
         marginTop: "30%",
         backgroundColor: "#380a15",
-
+        color: "white",
         width: "100%",
         height: "2.5rem",
         bottom: "0"
       }}
     >
-      footer
+      Copyright Dad Jokes 2020
     </CardFooter>
   );
 }

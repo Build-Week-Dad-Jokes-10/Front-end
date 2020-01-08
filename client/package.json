@@ -19,6 +19,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-swipe-to-delete-component": "^0.5.4",
+    "react-testing-library": "^8.0.1",
     "reactstrap": "^8.2.0",
     "styled-components": "^4.4.1",
     "yup": "^0.28.0"
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "jest": "^24.9.0",
+    "jest-dom": "^4.0.0",
     "react-test-renderer": "^16.12.0"
   }
 }
