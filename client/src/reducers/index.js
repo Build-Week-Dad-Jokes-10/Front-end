@@ -23,6 +23,12 @@ export const reducer = (state = initialState, action) => {
         isLoading: false,
         user: action.payload
       }
+    case "LOGIN_FAIL":
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false
+      }
     default:
       return state;
   }
