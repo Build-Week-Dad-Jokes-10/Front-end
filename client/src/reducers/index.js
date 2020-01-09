@@ -5,6 +5,10 @@ export const initialState = {
   user: {
     username: '',
     password: ''
+  },
+  jokes: {
+    setup: '',
+    punchline: ''
   }
 }
 
@@ -26,7 +30,7 @@ export const reducer = (state = initialState, action) => {
     case "LOGIN_FAIL":
       return {
         ...state,
-        error: action.payload,
+        error: "Incorrect Username/Password",
         isLoading: false
       }
     default:
