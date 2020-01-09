@@ -22,6 +22,7 @@ const Login = props => {
     axiosWithAuth()
       .post("https://dad-jokes2.herokuapp.com/auth/login", cred)
       .then(res => {
+        console.log(JSON.parse(res.config.data).username);
         localStorage.setItem("token", res.data.token);
         props.history.push("/");
       })
@@ -41,8 +42,12 @@ const Login = props => {
   return (
     <>
       <h1 className="login-header">Dad Jokes</h1>
-      <Form onSubmit={handleSubmit} className="login-form" data-testid="login-form">
-        <label className="login-label" >Log In</label>
+      <Form
+        onSubmit={handleSubmit}
+        className="login-form"
+        data-testid="login-form"
+      >
+        <label className="login-label">Log In</label>
 
         <div>
           <FormGroup className="login-cred">
