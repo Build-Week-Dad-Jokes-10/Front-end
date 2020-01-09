@@ -26,6 +26,7 @@ const Login = props => {
         console.log(newUser);
         dispatch({ type: "LOGIN_SUCCESS", payload: newUser });
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userState", JSON.stringify(newUser));
         props.history.push("/");
       })
       .catch(err => {

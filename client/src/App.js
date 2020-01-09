@@ -11,13 +11,13 @@ import { JokeContext } from "./contexts/JokeContext";
 import dummyData from "./dummyData";
 import dummyUserData from "./dummyUserData";
 import SignUp from "./components/SignUp";
-import { initialState, reducer } from './reducers';
+import { initialState, reducer } from "./reducers";
 
 function App() {
   const [joke, setJoke] = useState(dummyData);
   const [user, setUser] = useState(dummyUserData);
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state.user.username);
+  console.log("its me", state.user.username);
   return (
     <div className="App">
       <Router>

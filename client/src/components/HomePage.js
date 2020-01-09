@@ -20,6 +20,7 @@ import {
 } from "reactstrap";
 import daddy from "../../src/daddy.jpg";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const { joke } = useContext(JokeContext);
@@ -28,7 +29,6 @@ export default function HomePage() {
   const [logged, setLogged] = useState(false);
 
   const [modal, setModal] = useState(false);
-
 
   const [newJoke, setNewJoke] = useState({ setup: "", punchline: "" });
 

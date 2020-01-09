@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { JokeContext } from "../contexts/JokeContext";
 import { UserContext } from "../contexts/UserContext";
 import MainHeader from "./MainHeader";
@@ -6,11 +6,21 @@ import Footer from "./Footer";
 import { Card, Col, Container, CardText, Button } from "reactstrap";
 import JokeCardList from "./JokeCardList";
 import { MdAccountCircle } from "react-icons/md";
+import { axiosWithAuth } from "../utils/AxiosWithAuth";
 
 export default function ProfilePage() {
   const { joke } = useContext(JokeContext);
-  const { user } = useContext(UserContext);
-  console.log(user);
+  const { state, dispatch } = useContext(UserContext);
+
+  console.log(state.user.username);
+
+  useEffect(() => {
+    const data = localStorage.getItem("userState");
+    if (data) {
+      dispatch({ type: "LOGIN_SUCCESS", payload: JSON.parse(data) });
+    }
+  }, []);
+
   return (
     <>
       <MainHeader />
@@ -19,7 +29,6 @@ export default function ProfilePage() {
           style={{
             display: "flex",
             flexDirection: "row",
-
             backgroundColor: "#2670C5",
             marginTop: "5%",
             height: "30vh"
@@ -54,11 +63,9 @@ export default function ProfilePage() {
                 color: "#380a15"
               }}
             >
-              {user[0].username}
+              {state.user.username}
             </h1>
-            <h2 style={{ display: "flex", fontSize: "20px" }}>
-              Member Since {user[0].dateCreated}
-            </h2>
+            <h2 style={{ display: "flex", fontSize: "20px" }}>Member Since</h2>
           </div>
         </Card>
         <h1
