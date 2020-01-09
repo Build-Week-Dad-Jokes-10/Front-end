@@ -17,6 +17,7 @@ function App() {
   const [joke, setJoke] = useState(dummyData);
   const [user, setUser] = useState(dummyUserData);
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state.user.username);
   return (
     <div className="App">
       <Router>

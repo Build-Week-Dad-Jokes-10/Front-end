@@ -11,8 +11,7 @@ const Login = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(user);
-    dispatch({})
+    dispatch({ type: 'LOGIN_START'})
     // if (
     //   cred.username === user[0].username &&
     //   cred.password === user[0].password
@@ -23,11 +22,16 @@ const Login = props => {
     axiosWithAuth()
       .post("https://dad-jokes2.herokuapp.com/auth/login", cred)
       .then(res => {
+
+        const newUser = JSON.parse(res.config.data)
+        console.log(newUser);
+        dispatch({ type: 'LOGIN_SUCCESS', payload: newUser})
         localStorage.setItem("token", res.data.token);
         props.history.push("/");
       })
       .catch(err => {
         console.log(err.message);
+        dispatch({ type: 'LOGIN_FAIL', payload: err.message})
         setErr("Invalid Username/Password");
       });
   };
@@ -81,7 +85,7 @@ const Login = props => {
           </p>
           <Button>Log In</Button>
         </FormGroup>
-        {err && <div className="error-message">{err}</div>}
+        {state.error && <div className="error-message">{state.error}</div>}
       </Form>
       <Footer />
     </>
