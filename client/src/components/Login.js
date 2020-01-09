@@ -12,6 +12,7 @@ const Login = props => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log(user);
+    dispatch({})
     // if (
     //   cred.username === user[0].username &&
     //   cred.password === user[0].password
