@@ -1,38 +1,38 @@
 export const initialState = {
   loggedIn: false,
   isLoading: false,
-  error: '',
+  error: "",
   user: {
-    username: '',
-    password: ''
+    username: "",
+    password: ""
   },
   jokes: {
-    setup: '',
-    punchline: ''
+    setup: "",
+    punchline: ""
   }
-}
+};
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN_START":
       return {
         ...state,
-        error: '',
+        error: "",
         isLoading: true
-      }
+      };
     case "LOGIN_SUCCESS":
       return {
         ...state,
         loggedIn: true,
         isLoading: false,
         user: action.payload
-      }
+      };
     case "LOGIN_FAIL":
       return {
         ...state,
         error: "Incorrect Username/Password",
         isLoading: false
-      }
+      };
     default:
       return state;
   }

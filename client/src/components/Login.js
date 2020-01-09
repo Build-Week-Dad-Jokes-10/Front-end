@@ -11,7 +11,7 @@ const Login = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch({ type: 'LOGIN_START'})
+    dispatch({ type: "LOGIN_START" });
     // if (
     //   cred.username === user[0].username &&
     //   cred.password === user[0].password
@@ -22,16 +22,16 @@ const Login = props => {
     axiosWithAuth()
       .post("https://dad-jokes2.herokuapp.com/auth/login", cred)
       .then(res => {
-
-        const newUser = JSON.parse(res.config.data)
+        const newUser = JSON.parse(res.config.data);
         console.log(newUser);
-        dispatch({ type: 'LOGIN_SUCCESS', payload: newUser})
+        dispatch({ type: "LOGIN_SUCCESS", payload: newUser });
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userState", JSON.stringify(newUser));
         props.history.push("/");
       })
       .catch(err => {
         console.log(err.message);
-        dispatch({ type: 'LOGIN_FAIL', payload: err.message})
+        dispatch({ type: "LOGIN_FAIL", payload: err.message });
         setErr("Invalid Username/Password");
       });
   };
@@ -46,8 +46,12 @@ const Login = props => {
   return (
     <>
       <h1 className="login-header">Dad Jokes</h1>
-      <Form onSubmit={handleSubmit} className="login-form" data-testid="login-form">
-        <label className="login-label" >Log In</label>
+      <Form
+        onSubmit={handleSubmit}
+        className="login-form"
+        data-testid="login-form"
+      >
+        <label className="login-label">Log In</label>
 
         <div>
           <FormGroup className="login-cred">
