@@ -25,6 +25,7 @@ export default function SignUp(props) {
     e.preventDefault();
     if (cred.confirmPassword === cred.password) {
       localStorage.setItem("token", "true");
+      // localStorage.setItem("userState", JSON.stringify(newUser));
       //   let newUser = user.slice();
       //   user.push({ ...cred, id: Date.now() });
       //   localStorage.setItem(user, "true");
