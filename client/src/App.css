@@ -8,12 +8,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -75,14 +69,6 @@
   font-size: 1.25rem;
   font-weight: 400;
 }
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 .punchline-btn {
   text-decoration: none;
@@ -141,4 +127,8 @@
   margin-left: 58%;
   margin-top: 5%;
   background-color: #2670c5;
+}
+
+@media (max-width: 1024px) {
+  
 }

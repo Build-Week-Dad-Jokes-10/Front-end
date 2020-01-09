@@ -1,0 +1,25 @@
+.container .card .card-header {
+    font-size: 3.5rem;
+}
+
+.container .card .nav-link {
+    font-size: 2rem;
+}
+
+.container .joke-header {
+    font-size: 3rem;
+    margin-bottom: 5%;
+}
+
+@media only screen and (max-width: 1024px) {
+    .container .card .card-header {
+        font-size:  4.5rem;
+        margin-bottom: 4%;
+        margin-top: 5%;
+    }
+
+    .container .card .nav-link {
+        font-size: 2.5rem;
+    }
+
+}

@@ -21,6 +21,8 @@ import {
 import daddy from "../../src/daddy.jpg";
 import Footer from "./Footer";
 
+import "./HomePage.css";
+
 export default function HomePage() {
   const { joke } = useContext(JokeContext);
   const { user, setUser } = useContext(UserContext);
@@ -67,9 +69,9 @@ export default function HomePage() {
             padding: "1%"
           }}
         >
-          <h1
+          <h1 
+            className="card-header"
             style={{
-              fontSize: "50px",
               color: "white",
               textShadow: "1px 1px black"
             }}
@@ -79,11 +81,6 @@ export default function HomePage() {
 
           {logged && (
             <Nav className="d-flex justify-content-center">
-              {/* <NavItem className="home-page-nav">
-                <NavLink href="/" className="home-page-nav-link">
-                  Home
-                </NavLink>
-              </NavItem> */}
               <NavItem className="home-page-nav">
                 <NavLink href="/profile" className="home-page-nav-link">
                   My Profile
@@ -120,7 +117,12 @@ export default function HomePage() {
             </Nav>
           )}
         </Card>
-        <h1 style={{ color: "#380a15" }}>Top Dad Jokes </h1>
+        <h1 
+          className="joke-header"
+          style={{ color: "#380a15" }}
+        >
+          Top Dad Jokes 
+        </h1>
         {logged && (
           <Button
             className="showModalBtn"
