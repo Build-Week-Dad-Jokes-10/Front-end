@@ -37,7 +37,7 @@ export default function HomePage() {
   console.log(joke);
   useEffect(() => {
     console.log(localStorage.getItem("token"));
-    if (localStorage.getItem("token") === "true") {
+    if (localStorage.getItem("token")) {
       setLogged(true);
     }
   }, [logged]);

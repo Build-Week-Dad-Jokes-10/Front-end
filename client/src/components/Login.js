@@ -7,28 +7,28 @@ import { UserContext } from "../contexts/UserContext";
 const Login = props => {
   const [cred, setCred] = useState({ username: "", password: "" });
   const [err, setErr] = useState("");
-  // const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const handleSubmit = e => {
     e.preventDefault();
     console.log(user);
-    if (
-      cred.username === user[0].username &&
-      cred.password === user[0].password
-    ) {
-      localStorage.setItem("token", "true");
-      props.history.push("/");
-    } else setErr("Incorrect Username/Password");
-    // axiosWithAuth()
-    //   .post("", cred)
-    //   .then(res => {
-    //     localStorage.setItem("token", res.data.token);
-    //     props.history.push("/");
-    //   })
-    //   .catch(err => {
-    //     console.log(err.message);
-    //     setErr("Invalid Username/Password");
-    //   });
+    // if (
+    //   cred.username === user[0].username &&
+    //   cred.password === user[0].password
+    // ) {
+    //   localStorage.setItem("token", "true");
+    //   props.history.push("/");
+    // } else setErr("Incorrect Username/Password");
+    axiosWithAuth()
+      .post("https://dad-jokes2.herokuapp.com/auth/login", cred)
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err.message);
+        setErr("Invalid Username/Password");
+      });
   };
 
   const handleChange = e => {

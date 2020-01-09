@@ -5,7 +5,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 
 test('render Login form', () => {
-    const wrapper = rtl.render(<Login />);
+    const wrapper = rtl.render(<Login user={{username: '', password: ''}}/>);
 
     const form = wrapper.getByTestId(/login-form/i);
     expect(form).toBeVisible();
