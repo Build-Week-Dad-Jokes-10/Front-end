@@ -12,23 +12,23 @@ const Login = props => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log(user);
-    if (
-      cred.username === user[0].username &&
-      cred.password === user[0].password
-    ) {
-      localStorage.setItem("token", "true");
-      props.history.push("/");
-    } else setErr("Incorrect Username/Password");
-    // axiosWithAuth()
-    //   .post("", cred)
-    //   .then(res => {
-    //     localStorage.setItem("token", res.data.token);
-    //     props.history.push("/");
-    //   })
-    //   .catch(err => {
-    //     console.log(err.message);
-    //     setErr("Invalid Username/Password");
-    //   });
+    // if (
+    //   cred.username === user[0].username &&
+    //   cred.password === user[0].password
+    // ) {
+    //   localStorage.setItem("token", "true");
+    //   props.history.push("/");
+    // } else setErr("Incorrect Username/Password");
+    axiosWithAuth()
+      .post("https://dad-jokes2.herokuapp.com/auth/login", cred)
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err.message);
+        setErr("Invalid Username/Password");
+      });
   };
 
   const handleChange = e => {
@@ -41,8 +41,8 @@ const Login = props => {
   return (
     <>
       <h1 className="login-header">Dad Jokes</h1>
-      <Form onSubmit={handleSubmit} className="login-form">
-        <label className="login-label">Log In</label>
+      <Form onSubmit={handleSubmit} className="login-form" data-testid="login-form">
+        <label className="login-label" >Log In</label>
 
         <div>
           <FormGroup className="login-cred">
