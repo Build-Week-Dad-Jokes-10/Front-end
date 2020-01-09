@@ -7,7 +7,7 @@ import { UserContext } from "../contexts/UserContext";
 const Login = props => {
   const [cred, setCred] = useState({ username: "", password: "" });
   const [err, setErr] = useState("");
-  const { user } = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
 
   const handleSubmit = e => {
     e.preventDefault();

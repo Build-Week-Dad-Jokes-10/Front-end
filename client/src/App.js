@@ -22,7 +22,7 @@ function App() {
       <Router>
         <Switch>
           {/* <PrivateRoute exact path='/' component={HomePage} /> */}
-          <UserContext.Provider value={{ user, setUser }}>
+          <UserContext.Provider value={{ state, dispatch }}>
             <JokeContext.Provider value={{ joke, setJoke }}>
               <Route exact path="/login" component={Login} />
               <Route exact path="/" component={HomePage} />
