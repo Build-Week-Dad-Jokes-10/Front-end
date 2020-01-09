@@ -1,13 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/AxiosWithAuth';
 import { UserContext }  from '../contexts/UserContext';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Container, Label, Card, Button } from 'reactstrap';
 import MainHeader from './MainHeader';
 
 const Settings = props => {
-    const { user, setUser } = useContext(UserContext);
-    const [newData, setNewData] = useState({username: '', password: '', confirm: ''});
+    const { state, dispatch } = useContext(UserContext);
+    const [newData, setNewData] = useState({username: state.user.username, password: state.user.password, confirm: state.user.password});
     const [err, setError] = useState('');
+
     const buttonStyle = {
         marginTop: '3%',
         backgroundColor: "#EBC700",
@@ -43,7 +44,18 @@ const Settings = props => {
     const handleSubmit = e => {
         e.preventDefault();
         if(newData.password === newData.confirm) {
-            //
+            // dispatch({ type: 'USER_CHANGE_START'})
+            // axiosWithAuth()
+            //     .put('', newData)
+            //     .then(res => {
+            //         const newUser = JSON.parse(res.config.data)
+            //         console.log(newUser);
+            //         dispatch({ type: 'USER_CHANGE_SUCCESS', payload: newUser})
+            //     })
+            //     .catch(err => {
+            //         console.log(err.message);
+            //         dispatch({ type: 'USER_CHANGE_FAIL', payload: err.message})
+            //     })
         }
         else {
             setError('Passwords do not match.')
@@ -71,7 +83,7 @@ const Settings = props => {
                         >Change your Username</Button>
                         <Modal isOpen={userModal} toggle={userToggle} className="change-user">
                             <ModalHeader toggle={userToggle}>Change Username</ModalHeader>
-                            <Form onSubmit={'handleSubmit'}>
+                            <Form onSubmit={handleSubmit}>
                             <FormGroup style={modalStyle}>
                                 <Input
                                     type='text'
