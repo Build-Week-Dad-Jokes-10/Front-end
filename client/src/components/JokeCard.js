@@ -8,6 +8,8 @@ import {
 } from "react-icons/ti";
 import { TweenMax, TweenLite, Power3 } from "gsap";
 
+import "./JokeCard.css";
+
 export default function JokeCard(props) {
   const [isClicked, setIsClicked] = useState(false);
   const [isUpLiked, setIsUpLiked] = useState(false);
@@ -70,6 +72,7 @@ export default function JokeCard(props) {
       >
         <CardText
           style={{
+            className: "joke-text",
             fontSize: "20px",
             textShadow: "1px 1px black",
             color: "white",
@@ -92,6 +95,7 @@ export default function JokeCard(props) {
         </Collapse>
 
         <CardText
+          className="author-text"
           style={{ bottom: "5", position: "absolute", color: "#380a15" }}
         >
           Posted by {props.username}
