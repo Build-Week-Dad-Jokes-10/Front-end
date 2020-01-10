@@ -12,6 +12,7 @@ export default function SignUp(props) {
   });
   const [err, setErr] = useState("");
   const { user, setUser } = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
 
   const handleChange = e => {
     e.preventDefault();
@@ -23,17 +24,33 @@ export default function SignUp(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (cred.confirmPassword === cred.password) {
-      localStorage.setItem("token", "true");
-      // localStorage.setItem("userState", JSON.stringify(newUser));
-      //   let newUser = user.slice();
-      //   user.push({ ...cred, id: Date.now() });
-      //   localStorage.setItem(user, "true");
-      //   console.log("the new user", newUser);
-      props.history.push("/");
-    } else {
-      setErr("Password does not match confirmation, please try again");
-    }
+    dispatch({ type: "LOGIN_START" });
+    axiosWithAuth()
+      .post("https://dad-jokes2.herokuapp.com/auth/register", cred)
+      .then(res => {
+        const newUser = JSON.parse(res.config.data);
+        console.log(newUser);
+        dispatch({ type: "LOGIN_SUCCESS", payload: newUser });
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userState", JSON.stringify(newUser));
+        props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err.message);
+        dispatch({ type: "LOGIN_FAIL", payload: err.message });
+        setErr("Invalid Username/Password");
+      });
+    // if (cred.confirmPassword === cred.password) {
+    //   localStorage.setItem("token", "true");
+    //   // localStorage.setItem("userState", JSON.stringify(newUser));
+    //   //   let newUser = user.slice();
+    //   //   user.push({ ...cred, id: Date.now() });
+    //   //   localStorage.setItem(user, "true");
+    //   //   console.log("the new user", newUser);
+    //   props.history.push("/login");
+    // } else {
+    //   setErr("Password does not match confirmation, please try again");
+    // }
   };
 
   return (

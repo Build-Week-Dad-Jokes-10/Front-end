@@ -45,53 +45,60 @@ const Login = props => {
   };
   return (
     <>
-      <h1 className="login-header">Dad Jokes</h1>
-      <Form
-        onSubmit={handleSubmit}
-        className="login-form"
-        data-testid="login-form"
-      >
-        <label className="login-label">Log In</label>
+      {state.isLoading ? (
+        <h1>...loading</h1>
+      ) : (
+        <>
+          <h1 className="login-header">Dad Jokes</h1>
+          <Form
+            onSubmit={handleSubmit}
+            className="login-form"
+            data-testid="login-form"
+          >
+            <label className="login-label">Log In</label>
 
-        <div>
-          <FormGroup className="login-cred">
-            <Input
-              type="text"
-              name="username"
-              placeholder="Username"
-              value={cred.username}
-              onChange={handleChange}
-            />
-          </FormGroup>
+            <div>
+              <FormGroup className="login-cred">
+                <Input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  value={cred.username}
+                  onChange={handleChange}
+                />
+              </FormGroup>
 
-          <FormGroup className="login-cred">
-            <Input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={cred.password}
-              onChange={handleChange}
-            />
-          </FormGroup>
-        </div>
+              <FormGroup className="login-cred">
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={cred.password}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+            </div>
 
-        <FormGroup className="submit-container">
-          <p className="signup-prompt-con">
-            Don't have an account?{" "}
-            <span
-              className="signup-prompt"
-              onClick={() => {
-                props.history.push("/signup");
-              }}
-            >
-              Sign Up
-            </span>
-          </p>
-          <Button>Log In</Button>
-        </FormGroup>
-        {state.error && <div className="error-message">{state.error}</div>}
-      </Form>
-      <Footer />
+            <FormGroup className="submit-container">
+              <p className="signup-prompt-con">
+                Don't have an account?{" "}
+                <span
+                  className="signup-prompt"
+                  onClick={() => {
+                    props.history.push("/signup");
+                  }}
+                >
+                  Sign Up
+                </span>
+              </p>
+              <Button>Log In</Button>
+            </FormGroup>
+
+            {state.error && <div className="error-message">{state.error}</div>}
+          </Form>
+          <Footer />
+        </>
+      )}
     </>
   );
 };
