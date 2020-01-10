@@ -27,8 +27,8 @@ function App() {
             <JokeContext.Provider value={{ joke, setJoke }}>
               <Route exact path="/login" component={Login} />
               <Route exact path="/" component={HomePage} />
-              <Route exact path="/profile" component={ProfilePage} />
-              <Route exact path="/settings" component={Settings} />
+              <PrivateRoute exact path="/profile" component={ProfilePage} />
+              <PrivateRoute exact path="/settings" component={Settings} />
               <Route exact path="/signup" component={SignUp} />
               {/* <Route component=   {Login} /> */}
             </JokeContext.Provider>

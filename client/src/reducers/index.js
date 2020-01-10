@@ -32,7 +32,25 @@ export const reducer = (state = initialState, action) => {
         ...state,
         error: "Incorrect Username/Password",
         isLoading: false
-      };
+      }
+        case "USER_CHANGE_START":
+          return {
+            ...state,
+            error: '',
+            isLoading: true
+          }
+        case "USER_CHANGE_SUCCESS":
+          return {
+            ...state,
+            isLoading: false,
+            user: action.payload
+          }
+        case "USER_CHANGE_FAIL":
+          return {
+            ...state,
+            error: action.payload,
+            isLoading: false
+          }
     default:
       return state;
   }
