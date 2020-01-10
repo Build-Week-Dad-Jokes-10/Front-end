@@ -1,8 +1,26 @@
-.JokeCardList-container .Col .card .joke-text {
-    color: green;
+.JokeCardList-container .card .card-text {
+    padding: 8%;
 }
 
-.offset-md-2 .author-text {
-    padding: 2%;
+.JokeCardList-container .card .author-text {
+    padding: 1%;
 }
 
+.JokeCardList-container .card .collapse .card-text p {
+    margin: -10%;
+    font-style: unset;
+    color: darkorange;
+}
+
+/* Tablet Layout */
+@media only screen and (max-width: 1024px) {
+
+    .JokeCardList-container .card .author-text {
+        padding: 1%;
+    }
+
+    .JokeCardList-container .card .vote-buttons button svg {
+        width: 3rem;
+        height: 3rem;    
+    }
+}
