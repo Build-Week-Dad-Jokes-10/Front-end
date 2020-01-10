@@ -1,3 +1,7 @@
+.JokeCardList-container .card {
+    margin: 5% 0;
+}
+
 .JokeCardList-container .card .card-text {
     padding: 8%;
 }
@@ -22,5 +26,11 @@
     .JokeCardList-container .card .vote-buttons button svg {
         width: 3rem;
         height: 3rem;    
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .JokeCardList-container .card {
+        margin: auto;
     }
 }

@@ -61,6 +61,7 @@ export default function HomePage() {
       <Container>
         <Card
           style={{
+            className: "banner-card",
             height: "30vh",
             marginBottom: "10%",
             backgroundImage: `url(${daddy})`,
@@ -73,7 +74,9 @@ export default function HomePage() {
             className="card-header"
             style={{
               color: "white",
-              textShadow: "1px 1px black"
+              textShadow: "1px 1px black",
+              backgroundColor: "none",
+              borderBottom: "none"
             }}
           >
             Dad Jokes
