@@ -4,6 +4,7 @@
 
 .JokeCardList-container .card .card-text {
     padding: 8%;
+    font-size: 1.5rem;
 }
 
 .JokeCardList-container .card .author-text {
@@ -29,8 +30,25 @@
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
     .JokeCardList-container .card {
-        margin: auto;
+        margin: auto auto 10%;
     }
+
+    .JokeCardList-container .card .card-text {
+        font-size: 1rem;
+        padding: 15%;
+        margin-bottom: -5%;
+    }
+
+    .JokeCardList-container .card .author-text {
+        padding: 3%;
+        font-size: 1rem;
+    }
+
+    .JokeCardList-container .card .collapse .card-text p {
+        font-size: 1rem;
+        margin-top: -15%;   
+    }
+
 }

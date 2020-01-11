@@ -71,7 +71,6 @@ export default function JokeCard(props) {
       >
         <CardText
           style={{
-            fontSize: "20px",
             textShadow: "1px 1px black",
             color: "white"
           }}
