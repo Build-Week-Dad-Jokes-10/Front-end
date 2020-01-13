@@ -3,6 +3,7 @@ import { axiosWithAuth } from "../utils/AxiosWithAuth";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import Footer from "./Footer";
 import { UserContext } from "../contexts/UserContext";
+import { ClipLoader } from "react-spinners";
 
 const Login = props => {
   const [cred, setCred] = useState({ username: "", password: "" });
@@ -46,7 +47,11 @@ const Login = props => {
   return (
     <>
       {state.isLoading ? (
-        <h1>...loading</h1>
+        <ClipLoader
+          size={150}
+          loading={state.isLoading}
+          style={{ display: "block", marginTop: "20%" }}
+        />
       ) : (
         <>
           <h1 className="login-header">Dad Jokes</h1>
