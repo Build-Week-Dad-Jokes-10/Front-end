@@ -7,7 +7,7 @@ import { ClipLoader } from "react-spinners";
 
 const Login = props => {
   const [cred, setCred] = useState({ username: "", password: "" });
-  const [err, setErr] = useState("");
+
   const { state, dispatch } = useContext(UserContext);
 
   const handleSubmit = e => {
@@ -33,7 +33,6 @@ const Login = props => {
       .catch(err => {
         console.log(err.message);
         dispatch({ type: "LOGIN_FAIL", payload: err.message });
-        setErr("Invalid Username/Password");
       });
   };
 

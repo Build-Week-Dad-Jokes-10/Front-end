@@ -6,10 +6,13 @@ export const initialState = {
     username: "",
     password: ""
   },
-  jokes: {
-    setup: "",
-    punchline: ""
-  }
+  jokes: [
+    {
+      setup: "",
+      punchline: "",
+      id: 0
+    }
+  ]
 };
 
 export const reducer = (state = initialState, action) => {
@@ -32,25 +35,31 @@ export const reducer = (state = initialState, action) => {
         ...state,
         error: "Incorrect Username/Password",
         isLoading: false
-      }
-        case "USER_CHANGE_START":
-          return {
-            ...state,
-            error: '',
-            isLoading: true
-          }
-        case "USER_CHANGE_SUCCESS":
-          return {
-            ...state,
-            isLoading: false,
-            user: action.payload
-          }
-        case "USER_CHANGE_FAIL":
-          return {
-            ...state,
-            error: action.payload,
-            isLoading: false
-          }
+      };
+    case "USER_CHANGE_START":
+      return {
+        ...state,
+        error: "",
+        isLoading: true
+      };
+    case "USER_CHANGE_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        user: action.payload
+      };
+    case "USER_CHANGE_FAIL":
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false
+      };
+    case "JOKE_LOAD_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        jokes: action.payload
+      };
     default:
       return state;
   }
