@@ -3,7 +3,7 @@ import { JokeContext } from "../contexts/JokeContext";
 import { UserContext } from "../contexts/UserContext";
 import MainHeader from "./MainHeader";
 import Footer from "./Footer";
-import { Card, Col, Container, CardText, Button } from "reactstrap";
+import { Card, Container, Button } from "reactstrap";
 import JokeCardList from "./JokeCardList";
 import { MdAccountCircle } from "react-icons/md";
 import { axiosWithAuth } from "../utils/AxiosWithAuth";
@@ -11,8 +11,6 @@ import { axiosWithAuth } from "../utils/AxiosWithAuth";
 export default function ProfilePage() {
   const { joke } = useContext(JokeContext);
   const { state, dispatch } = useContext(UserContext);
-
-  console.log(state.user.username);
 
   useEffect(() => {
     const data = localStorage.getItem("userState");

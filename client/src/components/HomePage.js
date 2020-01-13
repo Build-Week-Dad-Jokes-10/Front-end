@@ -1,14 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
-import { JokeContext } from "../contexts/JokeContext";
+
 import JokeCardList from "./JokeCardList";
 import {
   Button,
   Modal,
   ModalHeader,
-  ModalBody,
-  ModalFooter,
   Form,
   FormGroup,
   Input,
@@ -21,24 +19,38 @@ import {
 import daddy from "../../src/daddy.jpg";
 import Footer from "./Footer";
 import { ClipLoader } from "react-spinners";
-import { Link } from "react-router-dom";
+
+import { axiosWithAuth } from "../utils/AxiosWithAuth";
 
 export default function HomePage() {
-  const { joke } = useContext(JokeContext);
-  const { user, setUser } = useContext(UserContext);
   //TODO setloading when backend
   const [logged, setLogged] = useState(false);
 
   const [modal, setModal] = useState(false);
 
-  const [newJoke, setNewJoke] = useState({ setup: "", punchline: "" });
+  const [newJoke, setNewJoke] = useState({
+    setup: "",
+    punchline: "",
+    type: "general"
+  });
   const { state, dispatch } = useContext(UserContext);
 
   const toggle = () => setModal(!modal);
 
-  console.log(joke);
   useEffect(() => {
-    console.log(localStorage.getItem("token"));
+    dispatch({ type: "LOGIN_START" });
+    axios
+      .get(
+        "https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes/50"
+      )
+      .then(res => {
+        console.log("replacement api", res.data);
+        dispatch({ type: "JOKE_LOAD_SUCCESS", payload: res.data });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+
     if (localStorage.getItem("token")) {
       setLogged(true);
     }
@@ -55,7 +67,27 @@ export default function HomePage() {
     });
   };
 
-  console.log(user);
+  const handleModalSubmit = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post(
+        "https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/jokes/create",
+        newJoke
+      )
+      .then(res => {
+        toggle();
+        console.log(res);
+        setNewJoke({
+          setup: "",
+          punchline: "",
+          type: "general"
+        });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <>
       {state.isLoading ? (
@@ -146,7 +178,7 @@ export default function HomePage() {
             <ModalHeader toggle={toggle} style={{ marginBottom: "20%" }}>
               <h1 className="add-joke-header">Create Joke</h1>
             </ModalHeader>
-            <Form onSubmit={"handleSubmit"} className="add-form">
+            <Form onSubmit={handleModalSubmit} className="add-form">
               <FormGroup className="add-joke-input">
                 <Input
                   type="text"

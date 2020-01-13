@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Card, CardText, Col, Button, Collapse } from "reactstrap";
+import { Card, CardText, Col, Collapse } from "reactstrap";
 import {
   TiArrowUpOutline,
   TiArrowDownOutline,
@@ -31,9 +31,6 @@ export default function JokeCard(props) {
   };
 
   useEffect(() => {
-    console.log("this is punchline", cardItemText);
-    console.log("this is card", cardItem);
-    console.log("this is like button", likeButton);
     // cardItem.current.style.display = "none";
 
     TweenLite.to(cardItem.current, 1, {
@@ -86,7 +83,7 @@ export default function JokeCard(props) {
               color: "white"
             }}
           >
-            <p ref={cardItemText}>{props.punchline}</p>
+            <span ref={cardItemText}>{props.punchline}</span>
           </CardText>
         </Collapse>
 
@@ -105,7 +102,6 @@ export default function JokeCard(props) {
                 style={{ cursor: "pointer", color: "#380a15" }}
                 size={30}
                 onClick={() => {
-                  console.log("unlikebutton", unlikeButton);
                   setIsUpLiked(false);
                   TweenLite.to(unlikeButton.current, {
                     keyframes: [
