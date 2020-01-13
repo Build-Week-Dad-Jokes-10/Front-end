@@ -1,5 +1,12 @@
 {
   "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-react-16-adapter-setup": "^0.1.0",
+    "jest-enzyme": "^7.1.2",
     "react-testing-library": "^8.0.1"
+  },
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1"
   }
 }
