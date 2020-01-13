@@ -34,8 +34,8 @@ export default function JokeCard(props) {
     // cardItem.current.style.display = "none";
 
     TweenLite.to(cardItem.current, 1, {
-      opacity: 1,
-      y: 50,
+      // opacity: 1,
+      // y: 50,
       ease: Power3.easeOut
     });
   }, []);
@@ -61,7 +61,6 @@ export default function JokeCard(props) {
           width: "80%",
           margin: "2% 0",
           backgroundColor: "#2670C5",
-          opacity: "0"
         }}
       >
         <CardText
