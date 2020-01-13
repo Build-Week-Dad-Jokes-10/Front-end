@@ -24,7 +24,14 @@ import Footer from "./Footer";
 import "./HomePage.css";
 
 export default function HomePage() {
-  const { joke } = useContext(JokeContext);
+  // const { joke } = useContext(JokeContext);
+  const { joke } = axios.get('..\dummyData.js')
+    .then(res => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch(err => console.log(err));
+
   const { user, setUser } = useContext(UserContext);
   //TODO setloading when backend
   const [logged, setLogged] = useState(false);
@@ -42,6 +49,7 @@ export default function HomePage() {
     if (localStorage.getItem("token") === "true") {
       setLogged(true);
     }
+    
   }, [logged]);
   const logout = () => {
     localStorage.clear();

@@ -30,6 +30,7 @@
     }
 }
 
+/* Mobile Layout */
 @media only screen and (max-width: 600px) {
     .JokeCardList-container .card {
         margin: auto auto 10%;

@@ -4,7 +4,7 @@ import { Button, Form, FormGroup, Input } from "reactstrap";
 import Footer from "./Footer";
 import { UserContext } from "../contexts/UserContext";
 
-export default function SignUp(props) {
+export default function SignUp(props, { values, touched, errors }) {
   const [cred, setCred] = useState({
     username: "",
     password: "",
@@ -50,6 +50,9 @@ export default function SignUp(props) {
               value={cred.username}
               onChange={handleChange}
             />
+            {errors.username && touched.username ? (             
+            <div>{errors.username}</div>           
+            ) : null}
           </FormGroup>
 
           <FormGroup className="login-cred">
@@ -60,6 +63,9 @@ export default function SignUp(props) {
               value={cred.password}
               onChange={handleChange}
             />
+            {errors.password && touched.password ? (             
+            <div>{errors.password}</div>           
+            ) : null}
           </FormGroup>
           <FormGroup className="login-cred">
             <Input
@@ -69,6 +75,9 @@ export default function SignUp(props) {
               value={cred.confirmPassword}
               onChange={handleChange}
             />
+            {errors.confirmPassword && touched.confirmPassword ? (             
+            <div>{errors.confirmPassword}</div>           
+            ) : null}
           </FormGroup>
         </div>
 
@@ -92,3 +101,14 @@ export default function SignUp(props) {
     </>
   );
 }
+
+const signupValidationSchema = Yup.object().shape({
+  username: Yup.string()
+   .max(5, 'Please enter no more than 40 characters')
+   .required( 'Please enter a username' ),
+  password: Yup.string()
+   .max(10, 'Please enter no more than 10 characters')
+   .required('Please enter a password'),
+  confirmPassword: Yup.string()
+   .oneOf([Yup.ref('password'), null], 'Passwords must match')
+ })
