@@ -22,7 +22,6 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          {/* <PrivateRoute exact path='/' component={HomePage} /> */}
           <UserContext.Provider value={{ state, dispatch }}>
             <JokeContext.Provider value={{ joke, setJoke }}>
               <Route exact path="/login" component={Login} />
@@ -30,7 +29,6 @@ function App() {
               <PrivateRoute exact path="/profile" component={ProfilePage} />
               <PrivateRoute exact path="/settings" component={Settings} />
               <Route exact path="/signup" component={SignUp} />
-              {/* <Route component=   {Login} /> */}
             </JokeContext.Provider>
           </UserContext.Provider>
         </Switch>
